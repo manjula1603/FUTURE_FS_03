@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla - Accelerating the Electric Future</title>
+    <meta name="description" content="Experience the future of sustainable transportation with Tesla's AI-powered electric vehicles and energy solutions.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --tesla-red: #FF0000;
+            --electric-blue: #00D9FF;
+            --cyber-green: #00FF88;
+            --lightning-yellow: #FFFF00;
+            --deep-space: #0B0B0F;
+            --dark-navy: #1A1A2E;
+            --silver: #C0C0C0;
+            --white: #FFFFFF;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --gradient-electric: linear-gradient(135deg, #00D9FF 0%, #00FF88 50%, #FFFF00 100%);
+            --gradient-tesla: linear-gradient(135deg, #FF0000 0%, #00D9FF 100%);
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--deep-space);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Electric grid background */
+        .electric-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0, 217, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 217, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: -2;
+            animation: gridPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Lightning bolts */
+        .lightning {
+            position: absolute;
+            width: 2px;
+            background: var(--lightning-yellow);
+            box-shadow: 0 0 10px var(--lightning-yellow);
+            animation: lightning 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        .lightning:nth-child(1) {
+            height: 100px;
+            top: 10%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .lightning:nth-child(2) {
+            height: 80px;
+            top: 60%;
+            right: 20%;
+            animation-delay: 1.5s;
+        }
+
+        .lightning:nth-child(3) {
+            height: 120px;
+            bottom: 15%;
+            left: 70%;
+            animation-delay: 3s;
+        }
+
+        @keyframes lightning {
+            0%, 90%, 100% { opacity: 0; transform: scaleY(0); }
+            5%, 85% { opacity: 1; transform: scaleY(1); }
+            10%, 80% { opacity: 0.7; transform: scaleY(0.8); }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(11, 11, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(11, 11, 15, 0.98);
+            box-shadow: 0 5px 30px rgba(0, 217, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .logo::before {
+            content: '⚡';
+            margin-right: 10px;
+            color: var(--electric-blue);
+            animation: logoSpark 2s ease-in-out infinite;
+        }
+
+        @keyframes logoSpark {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--electric-blue)); }
+            50% { transform: scale(1.2); filter: drop-shadow(0 0 15px var(--electric-blue)); }
+        }
+
+        .nav-items {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--electric-blue);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 5px var(--electric-blue);
+        }
+
+        .nav-link:hover {
+            color: var(--electric-blue);
+            text-shadow: 0 0 10px var(--electric-blue);
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 30% 70%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(0, 217, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1000px;
+            z-index: 2;
+            animation: heroSlideUp 1.5s ease-out;
+        }
+
+        @keyframes heroSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(80px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 700;
+            margin-bottom: 30px;
+            background: var(--gradient-electric);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 22px 45px;
+            background: var(--gradient-tesla);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-primary:hover::before {
+            left: 100%;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.5);
+        }
+
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 22px 45px;
+            background: transparent;
+            color: var(--electric-blue);
+            text-decoration: none;
+            border: 2px solid var(--electric-blue);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
+        }
+
+        .cta-secondary:hover {
+            background: var(--electric-blue);
+            color: var(--deep-space);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.4);
+        }
+
+        /* Floating Tech Elements */
+        .tech-element {
+            position: absolute;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 25px;
+            animation: techFloat 10s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .tech-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .tech-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 3s;
+        }
+
+        .tech-element:nth-child(3) {
+            bottom: 25%;
+            left: 20%;
+            animation-delay: 6s;
+        }
+
+        @keyframes techFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-25px) rotate(2deg); opacity: 1; }
+        }
+
+        .tech-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--cyber-green);
+        }
+
+        .tech-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Vehicles Section */
+        .vehicles {
+            padding: 120px 5%;
+            background: linear-gradient(180deg, var(--deep-space) 0%, var(--dark-navy) 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: var(--gradient-electric);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 80px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .vehicle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .vehicle-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .vehicle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-electric);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .vehicle-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--electric-blue);
+            box-shadow: 0 25px 60px rgba(0, 217, 255, 0.2);
+        }
+
+        .vehicle-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: var(--gradient-tesla);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .vehicle-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            border-radius: 25px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .vehicle-card:hover .vehicle-icon::after {
+            opacity: 1;
+        }
+
+        .vehicle-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .vehicle-description {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .vehicle-specs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .spec {
+            text-align: center;
+        }
+
+        .spec-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--cyber-green);
+            margin-bottom: 5px;
+        }
+
+        .spec-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .vehicle-price {
+            font-size: 32px;
+            font-weight: 700;
+            background: var(--gradient-electric);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .configure-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: transparent;
+            color: var(--electric-blue);
+            text-decoration: none;
+            border: 2px solid var(--electric-blue);
+            border-radius: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .configure-btn:hover {
+            background: var(--electric-blue);
+            color: var(--deep-space);
+            box-shadow: 0 10px 25px rgba(0, 217, 255, 0.3);
+        }
+
+        /* Energy Section */
+        .energy {
+            padding: 120px 5%;
+            background: var(--dark-navy);
+            position: relative;
+        }
+
+        .energy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .energy-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .energy-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: var(--gradient-electric);
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .energy-card:hover::before {
+            opacity: 1;
+        }
+
+        .energy-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .energy-icon {
+            font-size: 80px;
+            margin-bottom: 25px;
+            display: block;
+            color: var(--lightning-yellow);
+            filter: drop-shadow(0 0 15px var(--lightning-yellow));
+        }
+
+        .energy-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .energy-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 80px 5% 40px;
+            background: var(--deep-space);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--electric-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 15px;
+        }
+
+        .footer-link:hover {
+            color: var(--cyber-green);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 15px 5%;
+            }
+            
+            .nav-items {
+                gap: 25px;
+            }
+            
+            .nav-link {
+                font-size: 14px;
+            }
+            
+            .lightning, .tech-element {
+                display: none;
+            }
+            
+            .vehicle-grid, .energy-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .vehicle-specs {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="electric-grid"></div>
+    <div class="lightning"></div>
+    <div class="lightning"></div>
+    <div class="lightning"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <div class="logo">TESLA</div>
+            <div class="nav-items">
+                <a href="#" class="nav-link">Vehicles</a>
+                <a href="#" class="nav-link">Energy</a>
+                <a href="#" class="nav-link">Charging</a>
+                <a href="#" class="nav-link">Discover</a>
+                <a href="#" class="nav-link">Shop</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="tech-element">
+            <div class="tech-icon">🔋</div>
+            <div class="tech-text">1000+ miles range</div>
+        </div>
+        <div class="tech-element">
+            <div class="tech-icon">🤖</div>
+            <div class="tech-text">Full Self-Driving</div>
+        </div>
+        <div class="tech-element">
+            <div class="tech-icon">⚡</div>
+            <div class="tech-text">0-60 in 1.9s</div>
+        </div>
+
+        <div class="hero-content">
+            <h1>Electric Future<br>Starts Now</h1>
+            <p class="hero-subtitle">Experience the revolution in sustainable transportation with AI-powered autonomous vehicles that redefine what's possible.</p>
+            <div class="cta-group">
+                <a href="#" class="cta-primary">
+                    Order Now
+                    <span>→</span>
+                </a>
+                <a href="#" class="cta-secondary">
+                    Test Drive
+                    <span>🚗</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicles Section -->
+    <section class="vehicles">
+        <h2 class="section-title scroll-animate">Electric Fleet</h2>
+        <p class="section-subtitle scroll-animate">Choose your electric adventure with our revolutionary vehicle lineup</p>
+        <div class="vehicle-grid">
+            <div class="vehicle-card scroll-animate">
+                <div class="vehicle-icon">🏎️</div>
+                <h3 class="vehicle-title">Model S Plaid</h3>
+                <p class="vehicle-description">The quickest accelerating production car ever made. With tri-motor all-wheel drive and adaptive air suspension.</p>
+                <div class="vehicle-specs">
+                    <div class="spec">
+                        <div class="spec-value">1.99s</div>
+                        <div class="spec-label">0-60 mph</div>
+                    </div>
+                    <div class="spec">
+                        <div class="spec-value">405mi</div>
+                        <div class="spec-label">Range</div>
+                    </div>
+                    <div class="spec">
+                        <div class="spec-value">200mph</div>
+                        <div class="spec-label">Top Speed</div>
+                    </div>
+                </div>
+                <div class="vehicle-price">$129,990</div>
+                <a href="#" class="configure-btn">Configure</a>
+            </div>
+            
+            <div class="vehicle-card scroll-animate">
+                <div class="vehicle-icon">🚙</div>
+                <h3 class="vehicle-title">Model X</h3>
+                <p class="vehicle-description">The safest SUV ever made with falcon wing doors and seating for up to seven adults with cargo space.</p>
+                <div class="vehicle-specs">
+                    <div class="spec">
+                        <div class="spec-value">2.5s</div>
+                        <div class="spec-label">0-60 mph</div>
+                    </div>
+                    <div class="spec">
+                        <div class="spec-value">348mi</div>
+                        <div class="spec-label">Range</div>
+                    </div>
+                    <div class="spec">
+                        <div class="spec-value">5000lbs</div>
+                        <div class="spec-label">Towing</div>
+                    </div>
+                </div>
+                <div class="vehicle-price">$120,990</div>
+                <a href="#" class="configure-btn">Configure</a>
+            </div>
+            
+            <div class="vehicle-card scroll-animate">
+                <div class="vehicle-icon">🛻</div>
+                <h3 class="vehicle-title">Cybertruck</h3>
+                <p class="vehicle-description">Ultra-hard 30X cold-rolled stainless steel exoskeleton with bulletproof protection and adaptive air suspension.</p>
+                <div class="vehicle-specs">
+                    <div class="spec">
+                        <div class="spec-value">2.6s</div>
+                        <div class="spec-label">0-60 mph</div>
+                    </div>
+                    <div class="spec">
+                        <div class="spec-value">500mi</div>
+                        <div class="spec-label">Range</div>
+                    </div>
+                    <div class="spec">
+                        <div class="spec-value">11000lbs</div>
+                        <div class="spec-label">Towing</div>
+                    </div>
+                </div>
+                <div class="vehicle-price">$99,990</div>
+                <a href="#" class="configure-btn">Reserve</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Energy Section -->
+    <section class="energy">
+        <h2 class="section-title scroll-animate">Energy Solutions</h2>
+        <div class="energy-grid">
+            <div class="energy-card scroll-animate">
+                <span class="energy-icon">☀️</span>
+                <h3 class="energy-title">Solar Roof</h3>
+                <p class="energy-description">Beautiful solar tiles that generate clean energy for your home while providing superior protection and durability.</p>
+            </div>
+            <div class="energy-card scroll-animate">
+                <span class="energy-icon">🔋</span>
+                <h3 class="energy-title">Powerwall</h3>
+                <p class="energy-description">Home battery that stores energy from solar or the grid for use anytime—during outages or when electricity rates are high.</p>
+            </div>
+            <div class="energy-card scroll-animate">
+                <span class="energy-icon">⚡</span>
+                <h3 class="energy-title">Supercharger</h3>
+                <p class="energy-description">The world's fastest charging network with over 45,000 connectors worldwide. Charge anywhere, anytime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Vehicles</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Model S</a></li>
+                    <li><a href="#" class="footer-link">Model 3</a></li>
+                    <li><a href="#" class="footer-link">Model X</a></li>
+                    <li><a href="#" class="footer-link">Model Y</a></li>
+                    <li><a href="#" class="footer-link">Cybertruck</a></li>
+                    <li><a href="#" class="footer-link">Roadster</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Energy</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Solar Panels</a></li>
+                    <li><a href="#" class="footer-link">Solar Roof</a></li>
+                    <li><a href="#" class="footer-link">Powerwall</a></li>
+                    <li><a href="#" class="footer-link">Megapack</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Charging</h4>
